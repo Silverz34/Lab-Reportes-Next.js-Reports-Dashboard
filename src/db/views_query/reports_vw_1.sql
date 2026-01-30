@@ -11,7 +11,7 @@ CREATE OR REPLACE VIEW reports_vw_1 AS
     SELECT status AS estado_orden,
         COUNT(*) AS ordenes,
         SUM(total) AS monto_total,
-        ROUND((COUNT(*)::numeric / (SELECTCOUNT(*)FROM ordenes)*100),2) AS porcentaje
+        ROUND((COUNT(*)::numeric / (SELECT COUNT(*)FROM ordenes)*100),2) AS porcentaje
     FROM ordenes 
     GROUP BY status
     HAVING COUNT(*) >=1;
