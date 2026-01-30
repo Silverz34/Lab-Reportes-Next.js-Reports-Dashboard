@@ -22,4 +22,3 @@ CREATE OR REPLACE VIEW reports_vw_3 AS
 SELECT * FROM reports_vw_3 LIMIT 3;
 
 -- VERIFY:
-EXPLAIN SELECT * FROM reports_vw_3;

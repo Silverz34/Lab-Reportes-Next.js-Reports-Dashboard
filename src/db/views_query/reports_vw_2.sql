@@ -16,7 +16,7 @@ CREATE OR REPLACE VIEW reports_vw_2 AS
             ELSE 'Barato'
         END AS etiqueta_precio
     FROM productos
-    GROUP BY status
+    GROUP BY status;
 
 -- VERIFY: 
 SELECT * FROM reports_vw_2;
