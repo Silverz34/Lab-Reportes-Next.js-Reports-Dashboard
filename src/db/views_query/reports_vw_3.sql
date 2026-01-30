@@ -16,9 +16,10 @@ CREATE OR REPLACE VIEW reports_vw_3 AS
     FROM usuarios u
     JOIN ordenes o ON u.id = o.usuario_id
     GROUP BY U.id, u.nombre, u.email
-    HAVING SUM(o.total) < 500;
+    HAVING SUM(o.total) > 500;
 
 -- VERIFY: 
-SELECT * FROM reports_vw_3 ORDER BY ranking_cliente;
+SELECT * FROM reports_vw_3 LIMIT 3;
 
 -- VERIFY:
+EXPLAIN SELECT * FROM reports_vw_3;
