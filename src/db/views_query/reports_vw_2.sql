@@ -12,8 +12,8 @@ CREATE OR REPLACE VIEW reports_vw_2 AS
         COUNT(*) AS cantidad_productos,
         ROUND(AVG(precio),2) AS promedio_precio,
         CASE 
-            WHEN AVG(precio) > 50 THEN 'Cara'
-            ELSE 'Barata'
+            WHEN AVG(precio) > 50 THEN 'Caro'
+            ELSE 'Barato'
         END AS etiqueta_precio
     FROM productos
     GROUP BY status
