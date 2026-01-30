@@ -15,8 +15,9 @@ CREATE OR REPLACE VIEW reports_vw_4 AS
             WHEN p.stock = 0 THEN 'ALERTA: AGOTADO'
             WHEN p.stock BETWEEN 10 AND 50 THEN 'PRECAUCIÓN: BAJO'
             ELSE 'Stock Adecuado'
-        END AS accion_recomendada
-    FROM productos p;
+        END AS status_stock
+    FROM productos p
+    GROUP BY p.id, p.codigo, p.nombre, p.stock;
 
 -- VERIFY: 
 SELECT * FROM reports_vw_4 WHERE accion_recomendada LIKE 'ALERTA%';
