@@ -1,5 +1,5 @@
 /*
-REPORTE 1: Clasificacion de precios
+REPORTE 2: Clasificacion de precios
 Qué devuelve: categorias de productos segun si son "caras" o "baratas"
 Grain (una fila representa): ID de categoria
 Métrica(s): ROUND(AVG(precio), 2) promedio del precio, etiqueta de precio.
@@ -21,4 +21,3 @@ CREATE OR REPLACE VIEW reports_vw_2 AS
 -- VERIFY: 
 SELECT * FROM reports_vw_2;
 
--- VERIFY:
