@@ -17,9 +17,10 @@ CREATE OR REPLACE VIEW reports_vw_4 AS
             ELSE 'Stock Adecuado'
         END AS status_stock
     FROM productos p
+    WHERE p.precio > 0
     GROUP BY p.id, p.codigo, p.nombre, p.stock;
 
 -- VERIFY: 
-SELECT * FROM reports_vw_4 WHERE accion_recomendada LIKE 'ALERTA%';
+SELECT * FROM reports_vw_4 WHERE status_stock LIKE 'ALERTA%';
 
 -- VERIFY:
