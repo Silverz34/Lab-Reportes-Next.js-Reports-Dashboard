@@ -1,11 +1,13 @@
 /*
-REPORTE 5: 
-Qué devuelve:
+REPORTE 5: categorias con alto volumen 
+Qué devuelve: una categoria 
 Grain (una fila representa): 
-Métrica(s): 
+Métrica(s): SUM(p.stock) y AVG(stock)
 Por qué GROUP BY / HAVING / subconsulta: 
-
+ CTE calcula el promedio de stock por categoria ,
+ HAVING filtra las categorias cuya suma es mayor al promedio calculado. 
 */
+
 -- VIEW
 CREATE OR REPLACE VIEW reports_vw_5 AS
     WITH promedio_inventario AS(
