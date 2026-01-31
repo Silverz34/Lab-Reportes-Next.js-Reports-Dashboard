@@ -21,6 +21,10 @@ CREATE OR REPLACE VIEW reports_vw_4 AS
     GROUP BY p.id, p.codigo, p.nombre, p.stock;
 
 -- VERIFY: 
+--Este verify mostrara el producto gratis que se excluye de la tabla 
 SELECT * FROM reports_vw_4 WHERE status_stock LIKE 'ALERTA%';
 
 -- VERIFY:
+SELECT codigo_producto, stock_actual, status_stock 
+FROM reports_vw_4 
+WHERE status_stock = 'PRECAUCIÓN: BAJO';
