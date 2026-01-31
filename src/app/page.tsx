@@ -8,15 +8,19 @@ export default function Home() {
     { id: 5, title: 'Volumen de productos', description: ' Identifica las categorías que tienen más unidades físicas en bodega que el promedio.', link: '/reports/5'},
   ];
   return (
-    <div className="p-6"> 
+    <div className="p-6 m-12"> 
       <section className="mb-8"> 
       <h1 className="text-2xl font-bold mb-2">Dashboard de Reportes</h1>
-      <p className="text-gray-600"> xxxxxx</p> 
+      <p className="text-gray-600">
+        Este dashboard presenta una práctica de generación de views y 
+        reportes para un sistema de e‑commerce. Aquí se resumen indicadores de 
+        desempeño (KPIs) y análisis de datos. 
+      </p> 
       </section>
-
+      <br></br>
       <section> 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"> 
-          {reports.map((report) => ( <Card key={report.id} report={report} /> ))} 
+          {reports.map((report) => ( <Card key={report.id} report={report}/> ))} 
         </div> 
       </section> 
     </div>
