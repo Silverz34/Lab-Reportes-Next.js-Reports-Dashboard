@@ -1,10 +1,10 @@
 --ROLES.SQL 
 
 --por si ya existe el usuario 
-DROP ROLE IF EXIST readUser;
+DROP ROLE IF EXIST read_user;
 
 -- Crear usuario de la aplicación 
-CREATE ROLE readUser WITH 
+CREATE ROLE read_user WITH 
 LOGIN 
 PASSWORD 'stack135'
 NOSUPERUSER
