@@ -1,5 +1,5 @@
 /*
-REPORTE 1: Reporte mensual de estatus ordenes
+REPORTE 1: Reporte de estatus ordenes
 Qué devuelve: filtrado de error o cancelacion  
 Grain (una fila representa): un estatus de orden 
 Métrica(s): COUNT(*) ordenes, SUM(total) monto total, % cumplimiento.

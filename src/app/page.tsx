@@ -1,9 +1,11 @@
 import Card from "../../components/cards";
 export default function Home() {
   const reports = [
-    { id: 1, title: 'Reporte de Ventas', description: 'Resumen de las ventas mensuales.', link: '/reports/sales' },
-    { id: 2, title: 'Reporte de Usuarios', description: 'Análisis del crecimiento de usuarios.', link: '/reports/users' },
-    { id: 3, title: 'Reporte de Rendimiento', description: 'Evaluación del rendimiento del sistema.', link: '/reports/performance' },
+    { id: 1, title: 'Reporte de status orden', description: 'Resumen de cancelacion de ordenes', link: '/reports/1' },
+    { id: 2, title: 'Clasificacion de precios', description: 'categorias de productos segun si son "caras" o "baratas"', link: '/reports/2' },
+    { id: 3, title: 'Top compradores', description: 'suarios que han realizado mas compras', link: '/reports/3'},
+    { id: 4, title: 'semaforo de inventario', description: 'productos con stock minimo', link: '/reports/4'},
+    { id: 5, title: 'Volumen de productos', description: ' Identifica las categorías que tienen más unidades físicas en bodega que el promedio.', link: '/reports/5'},
   ];
   return (
     <div className="p-6"> 
