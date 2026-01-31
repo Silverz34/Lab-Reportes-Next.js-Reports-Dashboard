@@ -16,12 +16,13 @@ CREATE OR REPLACE VIEW reports_vw_5 AS
     SELECT c.nombre AS categoria,
         COUNT(p.id) AS cantidad_productos,
         SUM(p.stock) AS total_unidades,
-        ROUND((SELECT stock_promedio FROM promedio_inventario),0) AS promedio
+        ROUND((SELECT stock_promedio FROM promedio_inventario),0) AS promedio_global
     FROM categorias c
     JOIN productos p ON c.id = p.categoria_id
-    GROUP BY c.id, c.nombre;
+    GROUP BY c.id, c.nombre
     HAVING AVG(p.stock) < (SELECT stock_promedio FROM promedio_inventario);
 
 -- VERIFY: 
 SELECT * FROM reports_vw_5;
 -- VERIFY:
+SELECT DISTINCT promedio FROM reports_vw_5;

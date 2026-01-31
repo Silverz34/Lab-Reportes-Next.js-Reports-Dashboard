@@ -19,5 +19,5 @@ CREATE OR REPLACE VIEW reports_vw_1 AS
 -- VERIFY: 
 SELECT SUM(ordenes) FROM reports_vw_1;
 
--- VERIFY:
+
 
