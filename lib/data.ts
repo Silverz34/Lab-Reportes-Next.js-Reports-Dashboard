@@ -15,12 +15,14 @@ export async function getTopBuyers({page, minimo, pageSize = 10}: Page){
   try {
     const result = await db.query(query, [minimo, pageSize, offset]);
     const rows = result.rows as topCompradores[];
-
+    const totalIngreso= rows.reduce((suma,cliente) =>{
+      return suma + Number(cliente.gasto_acumulado);
+    },0);
     return {
       data: rows,
-      hasMore: rows.length === pageSize 
+      hasMore: rows.length === pageSize, 
+      totalVentas: totalIngreso
     };
-
   } catch (error) {
     console.error('Error en paginación:', error);
     return { data: [], hasMore: false };

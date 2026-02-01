@@ -10,7 +10,7 @@ const searchSchema = z.object({
 
 export default async function Report3Page({searchParams}: {searchParams : string}) {
     const params = searchSchema.parse(searchParams);
-    const {data, hasMore} = await getTopBuyers({
+    const {data, hasMore, totalVentas} = await getTopBuyers({
         page: params.page,
         minimo: params.minimo,
         pageSize: 10
@@ -22,6 +22,13 @@ export default async function Report3Page({searchParams}: {searchParams : string
             <p className="text-gray-600 mb-6">
              descrpccion lo dejare al final 
             </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+                <div className="bg-white p-6 rounded-lg shadow border-l-4 ">
+                    <p className="text-gray-500 font-medium">nnsnjs</p>
+                    <p className="text-4xl font-bold text-gray-900 mt-2">{totalVentas}</p>
+                </div>
+           </div>
+           <br></br>
             <div className="bg-white rounded shadow overflow-hidden mb-4">
                 <table className="min-w-full">
                     <thead className="bg-gray-100 border-b">
