@@ -1,12 +1,6 @@
 import { db } from "../../../../lib/db";
 import Grafica1 from "./grafica1";
-
-interface Reporte1Row{
-  estado_orden: string;
-  ordenes: number;
-  monto_total: number;
-  porcentaje: number;
-}
+import { Reporte1Row} from "../../../../interfaces/Reporte1row";
 
 export default async function Report1Page() {
   const resultado = await db.query('SELECT * FROM reports_vw_1;');

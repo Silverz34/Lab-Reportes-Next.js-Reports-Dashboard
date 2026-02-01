@@ -2,8 +2,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface paginacionProps{
-    totalPage: number;
-    MoreData: number;
+  totalPage: number;
+  MoreData: number;
 } 
 
 export default function Paginacion({totalPage, MoreData}:paginacionProps){

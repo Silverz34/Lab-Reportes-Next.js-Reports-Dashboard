@@ -1,12 +1,6 @@
 import { db } from "../../../../lib/db";
 //import Link from "next/link";
-
-interface Reporte2Row{
-    categoria: string;
-    cantidad_productos: number;
-    promedio_precio: number;
-    etiqueta_precio: string;
-}
+import { Reporte2Row} from "../../../../interfaces/Reporte2Row";
 
 export default async function Report2Page() {
     const result = await db.query('SELECT * FROM reports_vw_2;');
