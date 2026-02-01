@@ -27,6 +27,8 @@ export default async function Report3Page({searchParams}: {searchParams : string
                         <tr>
                             <th className="px-6 py-3 text-left text-gray-500">Ranking</th>
                             <th className="px-6 py-3 text-left text-gray-500">Cliente</th>
+                            <th className="px-6 py-3 text-left text-gray-500">Correo</th>
+                            <th className="px-6 py-3 text-left text-gray-500">total de ordenes</th>
                             <th className="px-6 py-3 text-left text-gray-500">Gasto Total</th>
                         </tr>
                     </thead>
@@ -35,6 +37,8 @@ export default async function Report3Page({searchParams}: {searchParams : string
                             <tr key={cliente.ranking} className="border-b hover:bg-gray-50">
                                 <td className="px-6 py-4 text-black">{cliente.ranking}</td>
                                 <td className="px-6 py-4 text-black">{cliente.cliente}</td> 
+                                <td className="px-6 py-4 text-black">{cliente.correo}</td> 
+                                <td className="px-6 py-4 text-black">{cliente.total_ordenes}</td> 
                                 <td className="px-6 py-4 text-black">${cliente.gasto_acumulado}</td>
                             </tr>
                         ))}
