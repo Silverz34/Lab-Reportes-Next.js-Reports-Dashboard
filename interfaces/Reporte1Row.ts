@@ -7,7 +7,7 @@ import {z} from 'zod';
   porcentaje: number;
 }*/
 
-const reporte1schema= z.object({
+export const reporte1schema= z.object({
  estado_orden: z.string(),
  ordenes: z.number(),
  monto_total : z.number(),

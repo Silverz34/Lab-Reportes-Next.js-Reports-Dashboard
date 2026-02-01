@@ -12,7 +12,8 @@ export default async function Report3Page({searchParams}: {searchParams : string
     const params = searchSchema.parse(searchParams);
     const {data, hasMore} = await getTopBuyers({
         page: params.page,
-        minimo: params.page
+        minimo: params.minimo,
+        pageSize: 10
     });
  return( 
         <div className="p-8">

@@ -6,10 +6,10 @@ import {z} from 'zod';
     pageSize?: number;
 }*/
 
-const pageschema = z.object({
+export const pageschema = z.object({
  page: z.number(),
  minimo : z.number(),
  pageSize: z.number()
-})
+});
 
 export type Page = z.infer<typeof pageschema>;
