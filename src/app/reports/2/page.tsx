@@ -1,5 +1,5 @@
 import { db } from "../../../../lib/db";
-import Link from "next/link";
+//import Link from "next/link";
 
 interface Reporte2Row{
     categoria: string;
