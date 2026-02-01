@@ -1,7 +1,7 @@
 import Paginacion from "../../../../components/paginacion";
 import {z} from "zod";
-//import Link from "next/link";
 import { getTopBuyers } from "../../../../lib/data";
+import { Flecha } from "../../../../components/flecha";
 
 const searchSchema = z.object({
  minimo: z.coerce.number().positive().optional().default(100),
@@ -17,6 +17,7 @@ export default async function Report3Page({searchParams}: {searchParams : string
     });
  return( 
         <div className="p-8">
+            <Flecha/>
             <h1 className="text-3xl font-bold mb-2">Reporte de estatus de orden</h1>
             <p className="text-gray-600 mb-6">
              descrpccion lo dejare al final 

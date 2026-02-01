@@ -1,5 +1,5 @@
 import { db } from "../../../../lib/db";
-//import Link from "next/link";
+import { Flecha } from "../../../../components/flecha";
 import { reporte2Row } from "../../../../interfaces/reporte2Row";
 
 export default async function Report2Page() {
@@ -10,11 +10,12 @@ export default async function Report2Page() {
 
  return( 
     <div className="p-8 space-y-8 min-h-screen">
-          <h1 className="text-3xl font-bold mb-2">Reporte de clasificacion de articulos</h1>
-          <p className="text-gray-600 mb-6">
+        <Flecha/>
+        <h1 className="text-3xl font-bold mb-2">Reporte de clasificacion de articulos</h1>
+        <p className="text-gray-600 mb-6">
            descrpccion lo dejare al final 
-          </p>
-          <br></br>
+        </p>
+        <br></br>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           <div className="bg-white p-6 rounded-lg shadow border-l-4 ">
                 <p className="text-gray-500 font-medium">Precio Promedio Global</p>

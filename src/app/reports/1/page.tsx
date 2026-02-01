@@ -1,6 +1,7 @@
 import { db } from "../../../../lib/db";
 import Grafica1 from "./grafica1";
 import { reporte1Row } from "../../../../interfaces/reporte1Row";
+import { Flecha } from "../../../../components/flecha";
 
 export default async function Report1Page() {
   const resultado = await db.query('SELECT * FROM reports_vw_1;');
@@ -11,6 +12,7 @@ export default async function Report1Page() {
 
   return (
    <div className="p-8 space-y-8 min-h-screen">
+      <Flecha/>
       <h1 className="text-3xl font-bold mb-2">Reporte de estatus de orden</h1>
       <p className="text-gray-600 mb-6">
        descrpccion lo dejare al final 
