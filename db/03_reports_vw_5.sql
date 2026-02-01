@@ -24,5 +24,6 @@ CREATE OR REPLACE VIEW reports_vw_5 AS
 
 -- VERIFY: 
 SELECT * FROM reports_vw_5;
+
 -- VERIFY:
-SELECT DISTINCT promedio FROM reports_vw_5;
+SELECT DISTINCT promedio_global FROM reports_vw_5;

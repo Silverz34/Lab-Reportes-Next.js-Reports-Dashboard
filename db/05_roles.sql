@@ -1,7 +1,7 @@
 --ROLES.SQL 
 
 --por si ya existe el usuario 
-DROP ROLE IF EXIST read_user;
+DROP ROLE IF EXISTS read_user;
 
 -- Crear usuario de la aplicación 
 CREATE ROLE read_user WITH 
@@ -13,12 +13,12 @@ NOCREATEROLE
 INHERIT;
 
 --Permiso basico de conexion 
-GRANT USAGE ON SCHEMA public TO readUser;
+GRANT USAGE ON SCHEMA public TO read_user;
 
 --Minimos permisos a solo lectura
-GRANT SELECT ON reports_vw_1 TO readUser;
-GRANT SELECT ON reports_vw_2 TO readUser;
-GRANT SELECT ON reports_vw_3 TO readUser;
-GRANT SELECT ON reports_vw_4 TO readUser;
-GRANT SELECT ON reports_vw_5 TO readUser;
+GRANT SELECT ON reports_vw_1 TO read_user;
+GRANT SELECT ON reports_vw_2 TO read_user;
+GRANT SELECT ON reports_vw_3 TO read_user;
+GRANT SELECT ON reports_vw_4 TO read_user;
+GRANT SELECT ON reports_vw_5 TO read_user;
 
