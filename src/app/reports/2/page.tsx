@@ -1,6 +1,6 @@
 import { db } from "../../../../lib/db";
 //import Link from "next/link";
-import { reporte2Row } from "../../../../interfaces/Reporte2Row";
+import { reporte2Row } from "../../../../interfaces/reporte2Row";
 
 export default async function Report2Page() {
     const result = await db.query('SELECT * FROM reports_vw_2;');

@@ -1,6 +1,6 @@
 import { db } from "../../../../lib/db";
 import Grafica1 from "./grafica1";
-import { reporte1Row } from "../../../../interfaces/Reporte1row";
+import { reporte1Row } from "../../../../interfaces/reporte1Row";
 
 export default async function Report1Page() {
   const resultado = await db.query('SELECT * FROM reports_vw_1;');

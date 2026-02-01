@@ -1,8 +1,8 @@
 import { db } from "./db";
 import { topCompradores} from "../interfaces/topcompradores";
-import { page } from "../interfaces/page";
+import { Page } from "../interfaces/page";
 
-export async function getTopBuyers({page, minimo, pageSize = 10}: page){
+export async function getTopBuyers({page, minimo, pageSize = 10}: Page){
   const offset = (page - 1) * pageSize;
 
   const query = `
