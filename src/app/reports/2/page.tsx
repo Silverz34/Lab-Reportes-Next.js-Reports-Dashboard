@@ -1,10 +1,10 @@
 import { db } from "../../../../lib/db";
 //import Link from "next/link";
-import { Reporte2Row} from "../../../../interfaces/Reporte2Row";
+import { reporte2Row } from "../../../../interfaces/Reporte2Row";
 
 export default async function Report2Page() {
     const result = await db.query('SELECT * FROM reports_vw_2;');
-    const data: Reporte2Row[] = result.rows;
+    const data: reporte2Row[] = result.rows;
     const sumaPromedios = data.reduce((acc, curr) => acc + Number(curr.promedio_precio), 0);
     const kpiPromedio = data.length > 0 ? (sumaPromedios / data.length).toFixed(2) : 0;
 

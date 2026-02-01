@@ -3,10 +3,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 interface paginacionProps{
   totalPage: number;
-  MoreData: number;
+  MoreData: boolean;
 } 
 
-export default function Paginacion({totalPage, MoreData}:paginacionProps){
+export default function Paginacion ({totalPage, MoreData}:paginacionProps){
     const router = useRouter();
     const search = useSearchParams();
     const navigation = (direction: 'antes' | 'despues') => {    

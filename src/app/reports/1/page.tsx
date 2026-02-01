@@ -1,10 +1,10 @@
 import { db } from "../../../../lib/db";
 import Grafica1 from "./grafica1";
-import { Reporte1Row} from "../../../../interfaces/Reporte1row";
+import { reporte1Row } from "../../../../interfaces/Reporte1row";
 
 export default async function Report1Page() {
   const resultado = await db.query('SELECT * FROM reports_vw_1;');
-  const data: Reporte1Row[] = resultado.rows;
+  const data: reporte1Row[] = resultado.rows;
 
   const totalPorcentaje = data.reduce((acc, curr) => acc + Number(curr.porcentaje), 0);
   const kpiPromedio = data.length > 0 ? (totalPorcentaje / data.length).toFixed(2) : 0;
