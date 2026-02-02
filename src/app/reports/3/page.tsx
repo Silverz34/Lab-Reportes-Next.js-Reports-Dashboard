@@ -1,15 +1,10 @@
 import Paginacion from "../../../../components/paginacion";
-import {z} from "zod";
 import { getTopBuyers } from "../../../../lib/data";
 import { Flecha } from "../../../../components/flecha";
-
-const searchSchema = z.object({
- minimo: z.coerce.number().positive().optional().default(100),
- page: z.coerce.number().min(1).optional().default(1)
-});
+import { pages } from "../../../../interfaces/page"
 
 export default async function Report3Page({searchParams}: {searchParams : string}) {
-    const params = searchSchema.parse(searchParams);
+    const params = pages.parse(searchParams);
     const {data, hasMore, totalVentas} = await getTopBuyers({
         page: params.page,
         minimo: params.minimo,

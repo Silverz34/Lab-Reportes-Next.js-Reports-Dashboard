@@ -1,26 +1,20 @@
 import {z} from 'zod';
 
-/*export interface page {
-    page: number;
-    minimo: number;
-    pageSize?: number;
-}*/
-
 export const pageschema = z.object({
- page: z.number().positive(),
- pageSize: z.number().positive()
+ page: z.coerce.number().positive().min(1).default(1),
+ pageSize: z.coerce.number().positive().default(5)
 });
 
 export type PageBase = z.infer<typeof pageschema>;
 
 export const pages = pageschema.extend({
-    minimo: z.number().positive(),
+    minimo: z.coerce.number().positive(),
 });
 
 export type pagesItems = z.infer<typeof pages>;
 
 export const clasInventory = pageschema.extend({
-    status: z.string(),
+    estatus: z.string(),
 });
 
 export type ClasInventory = z.infer<typeof clasInventory>;

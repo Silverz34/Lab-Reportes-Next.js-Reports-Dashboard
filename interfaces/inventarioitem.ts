@@ -4,7 +4,7 @@ export const invetSchema = z.object({
  codigo_producto : z.string(),
  producto : z.string(),
  stock_actual: z.number().positive(),
- status_strock: z.string()
+ status_stock: z.string()
 });
 
-export type inventarioItems = z.Infer<typeof invetSchema>;
+export type inventarioItems = z.infer<typeof invetSchema>;

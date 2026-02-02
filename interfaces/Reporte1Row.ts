@@ -1,12 +1,4 @@
 import {z} from 'zod';
-
-/*export interface reporte1Row{
-  estado_orden: string;
-  ordenes: number;
-  monto_total: number;
-  porcentaje: number;
-}*/
-
 export const reporte1schema= z.object({
  estado_orden: z.string(),
  ordenes: z.number(),

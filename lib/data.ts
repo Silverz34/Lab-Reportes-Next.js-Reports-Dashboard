@@ -31,18 +31,18 @@ export async function getTopBuyers({page, minimo, pageSize = 5}: pagesItems ){
 }
 
 //esto no es eficiente pero pide un dato defirente 
-export async function getStatusInventory({page, status, pageSize = 5}: ClasInventory){
+export async function getStatusInventory({page, estatus, pageSize = 5}: ClasInventory){
   const offset = (page - 1) * pageSize;
 
   const queryData = `
     SELECT * FROM reports_vw_4
-    ${status ? `WHERE estatus = $1` : ''} 
+    ${estatus ? `WHERE estatus = $1` : ''} 
     ORDER BY stock_actual ASC
-    LIMIT $${status ? '2' : '1'} OFFSET $${status ? '3' : '2'}
+    LIMIT $${estatus ? '2' : '1'} OFFSET $${estatus ? '3' : '2'}
   `;
 
   const queryParams = status 
-    ? [status, pageSize, offset] 
+    ? [estatus, pageSize, offset] 
     : [pageSize, offset];
 
   const queryKPI = `

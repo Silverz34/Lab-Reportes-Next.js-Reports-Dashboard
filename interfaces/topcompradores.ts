@@ -1,12 +1,4 @@
 import {z} from 'zod';
-/*export interface topCompradores{
-  ranking: number;
-  cliente: string;
-  correo: string;
-  total_ordenes: number;
-  gasto_acumulado: number;
-}*/
-
 export const topComSchema = z.object({
  ranking: z.number(),
  cliente: z.string(),
