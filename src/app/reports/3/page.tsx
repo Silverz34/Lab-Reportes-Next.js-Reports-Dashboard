@@ -24,34 +24,38 @@ export default async function Report3Page({searchParams}: {searchParams : string
                 </div>
            </div>
            <br></br>
-            <div className="bg-white rounded shadow overflow-hidden mb-4">
-                <table className="min-w-full">
-                    <thead className="min-w-full divide-y divide-gray-200">
-                        <tr>
-                            <th className="px-6 py-3 text-left text-gray-500">Ranking</th>
-                            <th className="px-6 py-3 text-left text-gray-500">Cliente</th>
-                            <th className="px-6 py-3 text-left text-gray-500">Correo</th>
-                            <th className="px-6 py-3 text-left text-gray-500">total de ordenes</th>
-                            <th className="px-6 py-3 text-left text-gray-500">Gasto Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((cliente) => (
-                            <tr key={cliente.ranking} className="border-b hover:bg-gray-50">
-                                <td className="px-6 py-4 text-black">{cliente.ranking}</td>
-                                <td className="px-6 py-4 text-black">{cliente.cliente}</td> 
-                                <td className="px-6 py-4 text-black">{cliente.correo}</td> 
-                                <td className="px-6 py-4 text-black">{cliente.total_ordenes}</td> 
-                                <td className="px-6 py-4 text-black">${cliente.gasto_acumulado}</td>
+            <div className="bg-white rounded-lg shadow overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-gray-500">Ranking</th>
+                                <th className="px-6 py-3 text-left text-gray-500">Cliente</th>
+                                <th className="px-6 py-3 text-left text-gray-500">Correo</th>
+                                <th className="px-6 py-3 text-left text-gray-500">total de ordenes</th>
+                                <th className="px-6 py-3 text-left text-gray-500">Gasto Total</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {data.map((cliente) => (
+                                <tr key={cliente.ranking} className="border-b hover:bg-gray-50">
+                                    <td className="px-6 py-4 text-black">{cliente.ranking}</td>
+                                    <td className="px-6 py-4 text-black">{cliente.cliente}</td> 
+                                    <td className="px-6 py-4 text-black">{cliente.correo}</td> 
+                                    <td className="px-6 py-4 text-black">{cliente.total_ordenes}</td> 
+                                    <td className="px-6 py-4 text-black">${cliente.gasto_acumulado}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="mt-4">
+                    <Paginacion 
+                        totalPage={params.page} 
+                        MoreData={hasMore} 
+                    />
+                </div>
             </div>
-            <Paginacion 
-                totalPage={params.page} 
-                MoreData={hasMore} 
-            />
         </div>
     );
 }
