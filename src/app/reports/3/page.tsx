@@ -4,7 +4,8 @@ import { Flecha } from "../../../../components/flecha";
 import { pages } from "../../../../interfaces/page"
 
 export default async function Report3Page({searchParams}: {searchParams : string}) {
-    const params = pages.parse(searchParams);
+    const resolvedParams = await searchParams;
+    const params = pages.parse(resolvedParams);
     const {data, hasMore, totalVentas} = await getTopBuyers({
         page: params.page,
         minimo: params.minimo,
