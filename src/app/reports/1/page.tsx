@@ -15,7 +15,9 @@ export default async function Report1Page() {
       <Flecha/>
       <h1 className="text-3xl font-bold mb-2">Reporte de estatus de orden</h1>
       <p className="text-gray-600 mb-6">
-       descrpccion lo dejare al final 
+        Este reporte identifica cuellos de botella en la cadena de suministro al mostrar
+        en que etapa se concentra el capital. Un alto porcentaje de ordenes pendientes indica fallas 
+        en la etapa de entregas, mientras que las entregas exitosas validan la eficiencia.
       </p>
       <br></br>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">

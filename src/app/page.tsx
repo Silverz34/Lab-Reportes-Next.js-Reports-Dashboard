@@ -10,11 +10,10 @@ export default function Home() {
   return (
     <div className="p-6 m-12"> 
       <section className="mb-8"> 
-      <h1 className="text-2xl font-bold mb-2">Dashboard de Reportes</h1>
       <p className="text-gray-600">
         Este dashboard presenta una práctica de generación de views y 
         reportes para un sistema de e‑commerce. Aquí se resumen indicadores de 
-        desempeño (KPIs) y análisis de datos. 
+        desempeño (KPIs) y análisis de datos sencillos. 
       </p> 
       </section>
       <br></br>

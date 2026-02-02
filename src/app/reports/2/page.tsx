@@ -13,7 +13,9 @@ export default async function Report2Page() {
         <Flecha/>
         <h1 className="text-3xl font-bold mb-2">Reporte de clasificacion de articulos</h1>
         <p className="text-gray-600 mb-6">
-           descrpccion lo dejare al final 
+           Clasifica cada categoría según si sus productos son más caros o más baratos en promedio. 
+           Te permite ver de un vistazo qué categorías manejan precios altos y cuáles son más económicas, 
+           ayudándote a ajustar tu estrategia de precios o promociones futuras por categoria (departamento)
         </p>
         <br></br>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
