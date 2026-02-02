@@ -9,11 +9,13 @@ export default async function Report5Page() {
                    <Flecha/>
                    <h1 className="text-3xl font-bold mb-2">Estatus de articulos</h1>
                    <p className="text-gray-600 mb-6">
-                     descrpccion lo dejare al final 
+                     Muestra qué categorías tienen menos inventario por producto en comparación con el promedio general de la tienda. 
+                     Ayuda a identificar familias de productos que están quedándose atrás y requieren una estrategia de reabastecimiento más amplia,
+                      no solo ajustes puntuales por producto.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
                         <div className="bg-white p-6 rounded-lg shadow border-l-4">
-                            <p className="text-gray-500 font-medium">productos con status bajo</p>
+                            <p className="text-gray-500 font-medium">stock por debajo del promedio</p>
                             <div className="flex gap-4 items-baseline">
                                 <p className="text-4xl font-bold text-gray-900">{kpi.nombre}</p>
                                 <p className="text-4xl font-bold text-gray-900">{kpi.cantidad}</p>
@@ -35,7 +37,7 @@ export default async function Report5Page() {
                                 <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Categoría</th>
                                 <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Volumen Stock</th>
                                 <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">cantidad</th>
-                                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Precio Promedio</th>
+                                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Promedio global</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -53,7 +55,7 @@ export default async function Report5Page() {
                                         {row.cantidad_productos}
                                     </td>
                                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono">
-                                        ${Number(row.promedio_global).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+                                        {Number(row.promedio_global).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                                     </td>
                                 </tr>
                             ))}

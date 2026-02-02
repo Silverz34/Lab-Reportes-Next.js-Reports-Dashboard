@@ -19,7 +19,7 @@ export default function Grafica2({ data }: ChartProps) {
 
   return (
     <div className="h-[450px] w-full bg-white p-4 rounded-lg shadow border border-gray-100">
-      <h3 className="text-gray-800 font-bold mb-6 text-center text-lg">Comparativa: Stock vs Precio Promedio</h3>
+      <h3 className="text-gray-800 font-bold mb-6 text-center text-lg">Comparativa: Stock vs Promedio global</h3>
       
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
@@ -44,16 +44,16 @@ export default function Grafica2({ data }: ChartProps) {
             yAxisId="right" 
             orientation="right"
             domain={['auto', 'auto']} 
-            tickFormatter={(value) => `$${value}`} 
+            tickFormatter={(value) => `${value}`} 
             tickLine={false}
             axisLine={false}
             tick={{ fontSize: 12, fill: '#ef4444' }} 
-            label={{ value: 'Precio Promedio ($)', angle: 90, position: 'insideRight', fill: '#ef4444', fontSize: 12 }} 
+            label={{ value: 'Promedio global', angle: 90, position: 'insideRight', fill: '#ef4444', fontSize: 12 }} 
           />
           <Tooltip 
             cursor={{ fill: '#f9fafb' }}
             formatter={(value, name) => {
-               if (name === 'Precio Promedio') return [`$${Number(value).toFixed(2)}`, name];
+               if (name === 'Promedio global') return [`${Number(value).toFixed(2)}`, name];
                return [value, name];
             }}
           />
@@ -70,7 +70,7 @@ export default function Grafica2({ data }: ChartProps) {
             yAxisId="right" 
             type="monotone" 
             dataKey="promedio_global" 
-            name="Precio Promedio" 
+            name="Promedio global" 
             stroke="#ef4444" 
             strokeWidth={4} 
             dot={{ r: 5, fill: '#ef4444', strokeWidth: 2, stroke: 'white' }} 

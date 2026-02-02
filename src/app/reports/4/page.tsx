@@ -18,7 +18,10 @@ export default async function Report4Page({searchParams}:{searchParams: string})
            <Flecha/>
            <h1 className="text-3xl font-bold mb-2">Estatus de articulos</h1>
            <p className="text-gray-600 mb-6">
-             descrpccion lo dejare al final 
+             Actúa como un sistema de alerta temprana para la operación diaria. 
+             Al visualizar productos agotados o con stock bajo, el reporte previene la pérdida de ventas
+             y permite coordinar reabastecimientos urgentes,
+             asegurando que la tienda nunca deje de ofrecer sus artículos
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
                 <div className="bg-white p-6 rounded-lg shadow border-l-4 ">

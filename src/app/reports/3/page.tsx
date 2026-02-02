@@ -11,6 +11,7 @@ export default async function Report3Page({searchParams}: {searchParams : string
         minimo: params.minimo,
         pageSize: 5
     });
+    
  return( 
         <div className="p-8">
             <Flecha/>
