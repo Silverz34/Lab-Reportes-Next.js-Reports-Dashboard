@@ -31,24 +31,24 @@ export async function getTopBuyers({page, minimo, pageSize = 5}: pagesItems ){
 }
 
 //esto no es eficiente pero pide un dato defirente 
-export async function getStatusInventory({page, estatus, pageSize = 5}: ClasInventory){
+export async function getStatusInventory({page, status_stock, pageSize = 5}: ClasInventory){
   const offset = (page - 1) * pageSize;
 
   const queryData = `
     SELECT * FROM reports_vw_4
-    ${estatus ? `WHERE estatus = $1` : ''} 
+    ${status_stock ? `WHERE status_stock = $1` : ''} 
     ORDER BY stock_actual ASC
-    LIMIT $${estatus ? '2' : '1'} OFFSET $${estatus ? '3' : '2'}
+    LIMIT $${status_stock ? '2' : '1'} OFFSET $${status_stock ? '3' : '2'}
   `;
 
-  const queryParams = status 
-    ? [estatus, pageSize, offset] 
+  const queryParams = status_stock 
+    ? [status_stock, pageSize, offset] 
     : [pageSize, offset];
 
   const queryKPI = `
     SELECT COUNT(*) as total_agotados 
     FROM reports_vw_4 
-    WHERE estatus = 'PRECAUCIÓN: BAJO'
+    WHERE status_stock = 'PRECAUCIÓN: BAJO'
   `;
   
   try {

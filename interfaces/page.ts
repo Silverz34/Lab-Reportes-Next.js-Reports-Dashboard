@@ -14,7 +14,9 @@ export const pages = pageschema.extend({
 export type pagesItems = z.infer<typeof pages>;
 
 export const clasInventory = pageschema.extend({
-    estatus: z.string(),
+    status_stock: z.enum(['ALERTA: AGOTADO', 'ALERTA: Stock Bajo', 'Stock Adecuado'])
+        .optional()
+        .catch(undefined)
 });
 
 export type ClasInventory = z.infer<typeof clasInventory>;
