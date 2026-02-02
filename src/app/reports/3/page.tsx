@@ -26,7 +26,7 @@ export default async function Report3Page({searchParams}: {searchParams : string
            <br></br>
             <div className="bg-white rounded shadow overflow-hidden mb-4">
                 <table className="min-w-full">
-                    <thead className="bg-gray-100 border-b">
+                    <thead className="min-w-full divide-y divide-gray-200">
                         <tr>
                             <th className="px-6 py-3 text-left text-gray-500">Ranking</th>
                             <th className="px-6 py-3 text-left text-gray-500">Cliente</th>

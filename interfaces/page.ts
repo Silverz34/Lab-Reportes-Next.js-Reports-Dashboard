@@ -8,13 +8,13 @@ export const pageschema = z.object({
 export type PageBase = z.infer<typeof pageschema>;
 
 export const pages = pageschema.extend({
-    minimo: z.coerce.number().positive(),
+   minimo: z.coerce.number().positive().default(100)
 });
 
 export type pagesItems = z.infer<typeof pages>;
 
 export const clasInventory = pageschema.extend({
-    status_stock: z.enum(['ALERTA: AGOTADO', 'ALERTA: Stock Bajo', 'Stock Adecuado'])
+    status_stock: z.enum(['ALERTA: AGOTADO', 'PRECAUCIÓN: BAJO', 'Stock Adecuado'])
         .optional()
         .catch(undefined)
 });

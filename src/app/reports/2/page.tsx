@@ -27,7 +27,7 @@ export default async function Report2Page() {
             <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50">
              <h3 className="font-semibold text-gray-700">Detalle por Categoría</h3>
             </div>
-            <table className="w-full text-left border-collapse">
+            <table className="w-full border-collapse border border-gray-300 bg-gray-100 text-black">
                 <thead>
                     <tr className="border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
                     <th className="px-6 py-4">ID Categoría</th>
