@@ -18,7 +18,7 @@ export default async function Report3Page({searchParams}: {searchParams : string
  return( 
         <div className="p-8">
             <Flecha/>
-            <h1 className="text-3xl font-bold mb-2">Reporte de estatus de orden</h1>
+            <h1 className="text-3xl font-bold mb-2">Reporte de mejores compradores</h1>
             <p className="text-gray-600 mb-6">
              descrpccion lo dejare al final 
             </p>
