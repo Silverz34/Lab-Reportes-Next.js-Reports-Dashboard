@@ -13,7 +13,7 @@ export default async function Report3Page({searchParams}: {searchParams : string
     const {data, hasMore, totalVentas} = await getTopBuyers({
         page: params.page,
         minimo: params.minimo,
-        pageSize: 10
+        pageSize: 5
     });
  return( 
         <div className="p-8">

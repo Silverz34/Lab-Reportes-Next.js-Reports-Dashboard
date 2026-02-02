@@ -1,8 +1,9 @@
 import { db } from "./db";
 import { topCompradores} from "../interfaces/topcompradores";
-import { Page } from "../interfaces/page";
+import { pagesItems, ClasInventory } from "../interfaces/page";
+import { inventarioItems } from "../interfaces/inventarioitem";
 
-export async function getTopBuyers({page, minimo, pageSize = 5}: Page){
+export async function getTopBuyers({page, minimo, pageSize = 5}: pagesItems ){
   const offset = (page - 1) * pageSize;
 
   const query = `
@@ -27,4 +28,47 @@ export async function getTopBuyers({page, minimo, pageSize = 5}: Page){
     console.error('Error en paginación:', error);
     return { data: [], hasMore: false };
   }
+}
+
+//esto no es eficiente pero pide un dato defirente 
+export async function getStatusInventory({page, status, pageSize = 5}: ClasInventory){
+  const offset = (page - 1) * pageSize;
+
+  const queryData = `
+    SELECT * FROM reports_vw_4
+    ${status ? `WHERE estatus = $1` : ''} 
+    ORDER BY stock_actual ASC
+    LIMIT $${status ? '2' : '1'} OFFSET $${status ? '3' : '2'}
+  `;
+
+  const queryParams = status 
+    ? [status, pageSize, offset] 
+    : [pageSize, offset];
+
+  const queryKPI = `
+    SELECT COUNT(*) as total_agotados 
+    FROM reports_vw_4 
+    WHERE estatus = 'PRECAUCIÓN: BAJO'
+  `;
+  
+  try {
+    const [resultData, resultKPI] = await Promise.all([
+      db.query(queryData, queryParams),
+      db.query(queryKPI)
+    ]);
+
+    const rows = resultData.rows as inventarioItems[];
+    const totalAgotados = Number(resultKPI.rows[0].total_agotados) || 0;
+
+    return {
+      data: rows,
+      hasMore: rows.length === pageSize,
+      totalAgotados 
+    };
+
+  } catch (error) {
+    console.error('Error en Inventario:', error);
+    return { data: [], hasMore: false, totalAgotados: 0 };
+  }
+
 }

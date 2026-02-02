@@ -7,9 +7,20 @@ import {z} from 'zod';
 }*/
 
 export const pageschema = z.object({
- page: z.number(),
- minimo : z.number(),
- pageSize: z.number()
+ page: z.number().positive(),
+ pageSize: z.number().positive()
 });
 
-export type Page = z.infer<typeof pageschema>;
+export type PageBase = z.infer<typeof pageschema>;
+
+export const pages = pageschema.extend({
+    minimo: z.number().positive(),
+});
+
+export type pagesItems = z.infer<typeof pages>;
+
+export const clasInventory = pageschema.extend({
+    status: z.string(),
+});
+
+export type ClasInventory = z.infer<typeof clasInventory>;
