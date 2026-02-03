@@ -3,6 +3,8 @@ import { getTopBuyers } from "../../../../lib/data";
 import { Flecha } from "../../../../components/flecha";
 import { pages } from "../../../../interfaces/page"
 
+export const dynamic = 'force-dynamic';
+
 export default async function Report3Page({searchParams}: {searchParams : string}) {
     const resolvedParams = await searchParams;
     const params = pages.parse(resolvedParams);

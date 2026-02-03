@@ -2,6 +2,8 @@ import { db } from "../../../../lib/db";
 import { Flecha } from "../../../../components/flecha";
 import { reporte2Row } from "../../../../interfaces/reporte2Row";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Report2Page() {
     const result = await db.query('SELECT * FROM reports_vw_2;');
     const data: reporte2Row[] = result.rows;

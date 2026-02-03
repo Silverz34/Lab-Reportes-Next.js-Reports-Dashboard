@@ -2,6 +2,7 @@ import Grafica2 from "./grafica5";
 import { Flecha } from "../../../../components/flecha";
 import {getDensity} from "../../../../lib/data"
 
+export const dynamic = 'force-dynamic';
 export default async function Report5Page() {
     const {data, kpi} = await getDensity();
  return( 

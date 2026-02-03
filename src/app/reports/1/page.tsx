@@ -3,6 +3,8 @@ import Grafica1 from "./grafica1";
 import { reporte1Row } from "../../../../interfaces/reporte1Row";
 import { Flecha } from "../../../../components/flecha";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Report1Page() {
   const resultado = await db.query('SELECT * FROM reports_vw_1;');
   const data: reporte1Row[] = resultado.rows;
