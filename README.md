@@ -1,9 +1,15 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## DASHBOARD E-COMMERCE BASICO 
+Esta practica se trata de una pagina que funciona como reportes sobre una base de datos desarrollada con **Next.js** y **PostgreSQL**.
+El propósito de esta práctica es experimentar con views e índices en PostgreSQL dentro de un entorno Docker, aplicándolos a un sistema de reportes construido con Next.js para analizar y optimizar el acceso a los datos.
 
-First, run the development server:
+##Stack Tecnológico 
+* **Frontend/Framework:** Next.js 15 (App Router).
+* **Base de Datos:** PostgreSQL (Dockerizado).
+* **Validación de Datos:** Zod (Esquemas estrictos para URL params y tipos).
+* **Visualización:** Recharts (Gráficos interactivos).
+* **Estilos:** Tailwind CSS.
+* **Lenguaje:** TypeScript.
 
 ```bash
 npm run dev
@@ -35,6 +41,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# Lab-Reportes-Next.js-Reports-Dashboard
->>>>>>> 198f553ec39ad1d34c9c3e77327c7645d294aa2d

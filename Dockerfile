@@ -1,5 +1,5 @@
 # 1. Base: Usamos una imagen ligera de Linux con Node.js instalado
-FROM node:18-alpine
+FROM node:20-alpine
 
 # 2. Directorio de trabajo: Creamos una carpeta '/app' dentro del contenedor
 WORKDIR /app
