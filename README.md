@@ -34,6 +34,12 @@ ejecuta el siguiente comando para levantar el contenedor
  ```bash
  docker-compose up --build
  ```
+### 3. Configurar Variables de Entorno
+Crea un archivo `.env` en la raíz copiando el ejemplo:
+```bash
+cp .env.example .env
+```
+(Asegúrate de que las credenciales en .env coincidan con las definidas en docker-compose.yml)
 
 ### Mostrar Dashboard 
 Una vez que la consola muestre que los servicios están listos:
