@@ -49,3 +49,35 @@ Las **views** no almacenan datos ni **índices**, pero su rendimiento depende de
 2. Antes de hacer cualquier consulta, la aplicacion utiliza **Zod**para validar los parámetros de la URL (paginacion, filtros).Se implemento de métodos defensivos como .catch() y .default(). Si un usuario manipula la URL ingresando valores inválidos (ej. ?page=texto o ?minimo=-50), el sistema no colapsa (Error 500).
 
 3. Se uso renderizado hibrido: **Server Components** para la logica de negocios y obtencion de datos (data.ts) y **Cliente Components** seutiliza estrictamente para interactividad (Graficos de Reachrts. dropdowns de filtro)
+
+## Defensa de la Arquitectura y Decisiones Tecnicas.
+A continuacion se justifica el diseño del sistema bajo algunas reglas que se tinen para la creacion de esta practica.
+
+### Estrategia de Base de Datos (SQL Views)
+Se optó por delegar la lógica compleja a la base de datos mediante Vistas (Views) en lugar de procesar datos en JavaScript. Esto reduce la latencia de red (se transfieren solo los datos finales) y centraliza la lógica de negocio.
+
+* Uso de CTEs (Common Table Expressions): Implementado en el Reporte 5.
+* Justificación: Se utilizó un CTE para calcular el "Promedio Global" una sola vez y reutilizarlo para filtrar las categorías. Esto hace la consulta más legible y evita subconsultas repetitivas.
+
+* Window Functions: Implementadas en el Reporte 3 (Ranking de Clientes).
+* Justificación: Se usó RANK() o ROW_NUMBER() para generar la posición del cliente basada en su gasto total. Esto permite paginar el ranking de manera eficiente sin recalcular toda la tabla en cada página.
+
+* Lógica Condicional (CASE/COALESCE):
+* Justificación: Se utilizaron para manejar valores nulos en precios o stocks y para crear categorías legibles ("Caro/Barato" o Semáforos) directamente desde SQL, simplificando el frontend.
+
+### Optimización y Rendimiento (Indexes)
+Para garantizar tiempos de respuesta rápidos, se implementó una estrategia de indexación en **db/indexes.sql**:
+
+* Índices en Foreign Keys: Se crearon índices en las columnas de unión (categoria_id, orden_id) para optimizar los JOINs entre tablas grandes.
+
+* Índices de Filtrado: Se añadieron índices en columnas de estado (status_stock, estado_orden) para acelerar los filtros WHERE utilizados en los Reportes 1 y 4.
+
+* Defensa: Sin estos índices, la base de datos tendría que realizar "Sequential Scans" (leer toda la tabla). Con los índices, se fuerza un "Index Scan", reduciendo la complejidad de búsqueda de O(n) a O(log n).
+
+### Seguridad y Principio de Menor Privilegio (Roles)
+Siguiendo las mejores prácticas de seguridad, la aplicación NO se conecta como superusuario (postgres).
+Rol de Aplicación (read_user): Se creó un rol específico en db/roles.sql.
+
+* Permisos Granulares: Este usuario tiene permisos GRANT SELECT únicamente sobre las Vistas, no sobre las tablas base.
+* Defensa: Si la aplicación Next.js fuera comprometida, el atacante no podría realizar operaciones destructivas (DROP, DELETE, INSERT) ni leer datos crudos que no estén expuestos explícitamente en las vistas.
+
