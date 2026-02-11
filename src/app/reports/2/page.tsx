@@ -34,13 +34,13 @@ export default async function Report2Page() {
             <table className="w-full border-collapse border border-gray-300 bg-gray-100 text-black">
                 <thead>
                     <tr className="border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
-                    <th className="px-6 py-4">ID Categoría</th>
+                    <th className="px-6 py-4">Categoria</th>
                     <th className="px-6 py-4">Productos en Catálogo</th>
                     <th className="px-6 py-4">Precio Promedio</th>
                     <th className="px-6 py-4">Clasificación</th>
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-gray-100 text-center">
                     {data.map((row) => (
                     <tr key={row.categoria} className="hover:bg-gray-50/50 transition-colors">
                         <td className="px-6 py-4 font-medium text-gray-900">

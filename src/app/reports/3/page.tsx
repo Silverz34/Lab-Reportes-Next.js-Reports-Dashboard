@@ -1,5 +1,5 @@
 import Paginacion from "../../../../components/paginacion";
-import { getTopBuyers } from "../../../../lib/data";
+import { getTopBuyers } from "../../../../lib/data/data";
 import { Flecha } from "../../../../components/flecha";
 import { pages } from "../../../../interfaces/page"
 

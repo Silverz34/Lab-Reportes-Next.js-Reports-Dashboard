@@ -1,6 +1,6 @@
 import Paginacion from "../../../../components/paginacion";
 import { clasInventory } from "../../../../interfaces/page";
-import { getStatusInventory} from '../../../../lib/data'
+import {getStatusInventory} from '../../../../lib/data/status'
 import { Flecha } from "../../../../components/flecha";
 
 export const dynamic = 'force-dynamic';

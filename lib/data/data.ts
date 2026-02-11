@@ -1,8 +1,7 @@
-import { db } from "./db";
-import { topCompradores} from "../interfaces/topcompradores";
-import { pagesItems, ClasInventory } from "../interfaces/page";
-import { inventarioItems } from "../interfaces/inventarioitem";
-import { density } from "../interfaces/densidad";
+import { db } from "../db";
+import { topCompradores} from "../../interfaces/topcompradores";
+import { pagesItems} from "../../interfaces/page";
+import { density } from "../../interfaces/densidad";
 
 export async function getTopBuyers({page, minimo, pageSize = 5}: pagesItems ){
   const offset = (page - 1) * pageSize;
@@ -31,48 +30,7 @@ export async function getTopBuyers({page, minimo, pageSize = 5}: pagesItems ){
   }
 }
 
-//esto no es eficiente pero pide un dato defirente 
-export async function getStatusInventory({page, status_stock, pageSize = 5}: ClasInventory){
-  const offset = (page - 1) * pageSize;
 
-  const queryData = `
-    SELECT * FROM reports_vw_4
-    ${status_stock ? `WHERE status_stock = $1` : ''} 
-    ORDER BY stock_actual ASC
-    LIMIT $${status_stock ? '2' : '1'} OFFSET $${status_stock ? '3' : '2'}
-  `;
-
-  const queryParams = status_stock 
-    ? [status_stock, pageSize, offset] 
-    : [pageSize, offset];
-
-  const queryKPI = `
-    SELECT COUNT(*) as total_agotados 
-    FROM reports_vw_4 
-    WHERE status_stock = 'PRECAUCIÓN: BAJO'
-  `;
-  
-  try {
-    const [resultData, resultKPI] = await Promise.all([
-      db.query(queryData, queryParams),
-      db.query(queryKPI)
-    ]);
-
-    const rows = resultData.rows as inventarioItems[];
-    const totalAgotados = Number(resultKPI.rows[0].total_agotados) || 0;
-
-    return {
-      data: rows,
-      hasMore: rows.length === pageSize,
-      totalAgotados 
-    };
-
-  } catch (error) {
-    console.error('Error en Inventario:', error);
-    return { data: [], hasMore: false, totalAgotados: 0 };
-  }
-
-}
 
 //otra mas no afecta 
 export async function getDensity(){
