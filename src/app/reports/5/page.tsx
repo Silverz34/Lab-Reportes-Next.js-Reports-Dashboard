@@ -1,4 +1,3 @@
-import Grafica2 from "./grafica5";
 import { Flecha } from "../../../../components/flecha";
 import {getDensity} from "../../../../lib/data"
 
@@ -24,9 +23,6 @@ export default async function Report5Page() {
                         </div>
                    </div>
                    <br></br>
-                   <div className="mb-8">
-                     <Grafica2 data={data}/>
-                   </div>
                    <div className="bg-white rounded-lg shadow overflow-hidden border border-gray-200">
                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
                     <h3 className="text-lg font-bold text-gray-800">Detalle por Categoría</h3>
