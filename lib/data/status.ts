@@ -8,15 +8,16 @@ export async function getStatusInventory({page, status_stock, pageSize = 5}: Cla
 
   const queryData = `
     SELECT * FROM reports_vw_4
-    ${status_stock ? `WHERE status_stock = $1` : ''} 
-    ORDER BY stock_actual ASC
-    LIMIT $${status_stock ? '2' : '1'} OFFSET $${status_stock ? '3' : '2'}
+    WHERE ($1::text IS NULL OR status_stock = $1)
+    ORDER BY stock_actual DESC
+    LIMIT $2 OFFSET $3
   `;
 
-  const queryParams = status_stock 
-    ? [status_stock, pageSize, offset] 
-    : [pageSize, offset];
-
+  const queryParams = [
+   status_stock || null, 
+   pageSize,
+   offset
+  ]
   const queryKPI = `
     SELECT COUNT(*) as total_agotados 
     FROM reports_vw_4 

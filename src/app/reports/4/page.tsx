@@ -13,7 +13,7 @@ export default async function Report4Page({searchParams}:{searchParams: string})
      status_stock: params.status_stock,
      pageSize: params.pageSize
     });
-    
+    const mensaje = 'no se encontraron articulos con ese estatus';
  return(
        <div className="p-8 font-sans text-white-800">
            <Flecha/>
@@ -41,7 +41,7 @@ export default async function Report4Page({searchParams}:{searchParams: string})
                     >
                         <option className="text-black" value=""> Ver Todos </option>
                         <option className="text-black" value="ALERTA: AGOTADO">ALERTA: AGOTADO</option>
-                        <option className="text-black" value="ALERTA: Stock Bajo">PRECAUCIÓN: BAJO</option>
+                        <option className="text-black" value="PRECAUCIÓN: BAJO">PRECAUCIÓN: BAJO</option>
                         <option className="text-black" value="Stock Adecuado">Stock Adecuado</option>
                     </select>
                 </div>
@@ -72,35 +72,47 @@ export default async function Report4Page({searchParams}:{searchParams: string})
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {data.map((row) => {
-                                let colorClass = "bg-gray-100 text-gray-800";
-                                if (row.status_stock === 'ALERTA: AGOTADO') {
-                                    colorClass = "bg-red-100 text-red-800 border-red-300";
-                                } else if (row.status_stock === 'PRECAUCIÓN: BAJO') {
-                                    colorClass = "bg-yellow-100 text-yellow-800 border-yellow-300";
-                                } else if (row.status_stock === 'Stock Adecuado') {
-                                    colorClass = "bg-green-100 text-green-800 border-green-300";
-                                }
-                                return (
-                                    <tr key={row.codigo_producto}>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {row.codigo_producto}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            {row.producto}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono">
-                                            {row.stock_actual} u.
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${colorClass}`}>
-                                                {row.status_stock}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                            {data.length === 0 ? (
+                                <tr>
+                                    <td colSpan={4}
+                                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                        No se encontraron artículos con ese estatus
+                                    </td>
+                                </tr>
+                            ) : (
+                                data.map((row) => {
+                                    let colorClass = "bg-gray-100 text-gray-800";
+                                    if (row.status_stock === "ALERTA: AGOTADO") {
+                                        colorClass = "bg-red-100 text-red-800 border-red-300";
+                                    } else if (row.status_stock === "PRECAUCIÓN: BAJO") {
+                                        colorClass = "bg-yellow-100 text-yellow-800 border-yellow-300";
+                                    } else if (row.status_stock === "Stock Adecuado") {
+                                        colorClass = "bg-green-100 text-green-800 border-green-300";
+                                    }
+                                    return (
+                                        <tr key={row.codigo_producto}>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {row.codigo_producto}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                {row.producto}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono">
+                                                {row.stock_actual} u.
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <span
+                                                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${colorClass}`}
+                                                >
+                                                    {row.status_stock}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            )}
                         </tbody>
+
                     </table>
                 </div>
                 <div className="mt-4">
@@ -111,7 +123,5 @@ export default async function Report4Page({searchParams}:{searchParams: string})
                 </div>
            </div> 
        </div>
-       
-      
     );
 }
