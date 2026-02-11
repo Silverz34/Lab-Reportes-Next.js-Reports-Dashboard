@@ -14,7 +14,7 @@ export async function getStatusInventory({page, status_stock, pageSize = 5}: Cla
   `;
 
   const queryParams = [
-   status_stock || null, 
+   status_stock , 
    pageSize,
    offset
   ]

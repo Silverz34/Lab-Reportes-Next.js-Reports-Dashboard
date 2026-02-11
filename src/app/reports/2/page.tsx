@@ -1,12 +1,10 @@
-import { db } from "../../../../lib/db";
 import { Flecha } from "../../../../components/flecha";
-import { reporte2Row } from "../../../../interfaces/reporte2Row";
+import { clasificacion } from "../../../../lib/data/clasificacion";
 
 export const dynamic = 'force-dynamic';
 
 export default async function Report2Page() {
-    const result = await db.query('SELECT * FROM reports_vw_2;');
-    const data: reporte2Row[] = result.rows;
+    const data = await clasificacion();
     const sumaPromedios = data.reduce((acc, curr) => acc + Number(curr.promedio_precio), 0);
     const kpiPromedio = data.length > 0 ? (sumaPromedios / data.length).toFixed(2) : 0;
 

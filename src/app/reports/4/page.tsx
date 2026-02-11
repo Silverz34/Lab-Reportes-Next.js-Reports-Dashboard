@@ -13,7 +13,6 @@ export default async function Report4Page({searchParams}:{searchParams: string})
      status_stock: params.status_stock,
      pageSize: params.pageSize
     });
-    const mensaje = 'no se encontraron articulos con ese estatus';
  return(
        <div className="p-8 font-sans text-white-800">
            <Flecha/>
