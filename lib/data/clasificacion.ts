@@ -7,6 +7,5 @@ export async function clasificacion() {
   }catch(error){
     console.error('Database Error', error)
     throw new Error('Error al obtener los datos')
-    return[];
   }
 }
