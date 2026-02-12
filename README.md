@@ -104,3 +104,38 @@ En lugar de usar lógica condicional en el lado del cliente para armar 'strings'
 **¿Por qué?** : 
 Garantiza la seguridad contra SQL injection ya que el comando nunca cambia. La consulta es ligeramente mas compleja de leer pero delega eficientemente la decisión del filtrado al motor de la base de datos. 
 
+## Performance Evidence:
+* **reports_vw_5**
+![alt text](image.png)
+### explicacion: 
+Lo primero que realiza es el calculo del CTE. PostgreSQL calcula primero el promedio global de stock y lo almacena temporalmente para reusalo en la comparacion. 
+Lo siguiente que se realiza es la filtracion con HAVING para comparar el promedio local contra el promedio global que se calculo previamente. 
+El motor utiliza **Group Key: c.id** para agrupar los productos por categoría antes de realizar el conteo y la suma de stock.
+
+* **reports_vw_3**
+![alt text](image-1.png)
+
+### explicacion: 
+La primera ejecucion que se realiza son los joins y el escaneo de los datos, la base combina las tablas usuraios y ordenes para luego escanera los datos (Seq Scan). Después agrupa los datos por usuari para luego filtrar bajo la condicion **sum(o.total) > '500'::numeric**, que confirma el HAVING que esta funcionando adecuadamente, eliminando filas despues de calcular la suma y antes de agregar el resultado.
+Como paso final valida el uso de la Windows Fuction (RANK).
+
+## Threat Model 
+* **Mitigacion de SQL injection**
+e erradicó la concatenación de strings en las consultas. Todas las funciones de **lib/data** utilizan _consultas parametrizadas_ (placeholders $1, $2...), delegando el escapado de inputs al driver de PostgreSQL. Esto asegura que datos como ' OR '1'='1 sean tratados como texto literal y no como código ejecutable.
+
+* **Principio minimo de privilegios**
+La aplicación Next.js no se conecta como superusuario (postgres). Se utiliza un rol específico (app_user) configurado en db/roles.sql que posee permisos estrictamente limitados: GRANT SELECT únicamente sobre las Vistas (reports_vw_*). Este usuario no tiene acceso a las tablas base (datos crudos) ni permisos para ejecutar comandos destructivos como DROP o DELETE
+
+* **Server components**
+Se utiliza la arquitectura de Server Components de Next.js (/app). La conexión a la base de datos y las credenciales (POSTGRES_PASSWORD) residen exclusivamente en el servidor y nunca son expuestas al navegador del cliente, eliminando el riesgo de fuga de credenciales.
+
+* **Whitelisting**
+Para cumplir con la regla de "nada de orderBy libre", los criterios de ordenamiento (ej. ORDER BY ranking ASC en getTopBuyers) están definidos estáticamente en el código (hardcoded). El usuario no puede alterar la columna de ordenamiento a través de parámetros URL, bloqueando un vector común de ataque
+
+
+
+####  Fuentes  
+* clientes de forma perezosa [Pool](https://node-postgres.com/apis/pool)
+* Para [Roles de usuario](https://medium.com/@maraclaudiaprezescalante/postgresql-usuarios-roles-y-c%C3%B3mo-no-arruinar-tu-modelo-de-permisos-5be8099f97c0)
+* Para [Indices](https://www.datacamp.com/es/tutorial/sql-server-index) de sql 
+* Para  conocer de [CTE](https://www.datacamp.com/es/tutorial/cte-sql)
